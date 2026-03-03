@@ -34,25 +34,25 @@
       "_comment_expected_dependencies_number": "Optional. Expected number of dependencies with comparison operator. Operators: gt (>), gte (>=), lt (<), lte (<=), eq (==). If not provided, this check will not be performed.",
       "direct_dependencies_names_list": {
         "eq": [
-          "django-2.2-py3-none-any.whl",
           "requests-2.31.0-py3-none-any.whl",
-          "flask-2.2.5-py3-none-any.whl"
+          "flask-2.2.5-py3-none-any.whl",
+          "django-2.2-py3-none-any.whl"
         ]
       },
       "transitive_dependencies_names_list": {
         "eq": [
-          "idna-3.11-py3-none-any.whl",
-          "pytz-2025.2-py2.py3-none-any.whl",
-          "itsdangerous-2.2.0-py3-none-any.whl",
-          "click-8.3.1-py3-none-any.whl",
-          "certifi-2026.1.4-py3-none-any.whl",
+          "charset_normalizer-3.4.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
           "jinja2-3.1.6-py3-none-any.whl",
           "markupsafe-3.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl",
-          "werkzeug-3.1.5-py3-none-any.whl",
-          "sqlparse-0.5.5-py3-none-any.whl",
-          "colorama",
           "urllib3-2.6.3-py3-none-any.whl",
-          "charset_normalizer-3.4.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl"
+          "sqlparse-0.5.5-py3-none-any.whl",
+          "werkzeug-3.1.5-py3-none-any.whl",
+          "certifi-2026.1.4-py3-none-any.whl",
+          "pytz-2025.2-py2.py3-none-any.whl",
+          "colorama",
+          "itsdangerous-2.2.0-py3-none-any.whl",
+          "click-8.3.1-py3-none-any.whl",
+          "idna-3.11-py3-none-any.whl"
         ]
       },
       "_comment_dependencies_names_list": "Optional. Check specific libraries in direct dependencies. Operators: eq (==), contains (all items from expected list in actual), in(all items from actual list in expected), nin(actual list does not contain provided libs). If not provided, this check will not be performed.",
@@ -116,12 +116,25 @@
       },
       "_comment_vulnerabilities_names_list": "Optional. Check specific libs names (minimist-0.0.8.tgz). Operators: eq (==), contains (all items from expected list in actual), in(all items from actual list in expected), nin(actual list does not contain provided libs). If not provided, this check will not be performed."
     },
-    "validate_scanner_logs": false,
+    "validate_scanner_logs": true,
     "_comment_validate_scanner_logs": "Whether to validate scanner logs. Options: true | false. Default: false",
     "logs": {
       "check_scanner_logs": true,
       "_comment_check_scanner_logs": "Whether to check scanner logs and attach them to Report Portal. Options: true | false. Default: true",
-      "expected_log_lines": [],
+      "expected_log_lines": [
+        {
+          "operator": "regex",
+          "value": "fStarting install-tool for python with version 3.10.19 ..."
+        },
+        {
+          "operator": "regex",
+          "value": "Installing filelock (3.20.3)"
+        },
+        {
+          "operator": "regex",
+          "value": "python version set to: 3.10.19"
+        }
+      ],
       "_comment_expected_log_lines": "Optional. List of log lines to validate. Each entry should have an 'operator' (eq or regex) and 'value' (string or regex pattern). Example: [{'operator': 'eq', 'value': 'Python version: 3.11'}, {'operator': 'regex', 'value': 'Python version: \\d+\\.\\d+'}]. If not provided, only log attachment will be performed."
     },
     "validate_reachability": false,
